@@ -1,31 +1,27 @@
-"use client";
+"use client"
 
-import useThemePicker, { ThemeKey } from "@/hooks/useThemePicker";
-import { ChangeEvent } from "react";
-import { hexToRgb } from "@/lib/utils";
-import ColorForm from "./ColorForm";
+import useThemePicker from "@/hooks/useThemePicker"
+import ColorInputs from "./colorInputs"
+import { printf, themeToCss } from "@/lib/utils"
 
 export default function ThemePicker() {
-   const { theme, setTheme } = useThemePicker();
-
-   const clrHandler = (key: ThemeKey, e: ChangeEvent<HTMLInputElement>) => {
-      const rgb = hexToRgb(e.target.value);
-      if (rgb) {
-         setTheme(key, rgb);
-      }
-   };
-
-   return (
-      <div className="w-3/4 mx-auto">
-         <ColorForm theme={theme} handler={clrHandler} />
-
-         <div className="border-2 border-border rounded-md p-5">
-            <div className="bg-foreground text-background p-2">
-               <pre>
-                  {}
-               </pre>
-            </div>
-         </div>
+  const { mode, dark, light, update } = useThemePicker()
+  return (
+    <div className="flex">
+      {mode === "light" ? (
+        <ColorInputs update={update} theme={light} />
+      ) : (
+        <ColorInputs update={update} theme={dark} />
+      )}
+      <div className="w-1/2 p-2">
+        <pre className="bg-background text-foreground rounded-lg border-border border-2 p-2">
+          {printf(
+            ":root {}\n.dark {}",
+            JSON.stringify(themeToCss(light), null, "\t"),
+            JSON.stringify(themeToCss(dark), null, "\t"),
+          )}
+        </pre>
       </div>
-   );
+    </div>
+  )
 }

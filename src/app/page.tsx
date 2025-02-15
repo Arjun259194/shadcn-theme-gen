@@ -1,11 +1,9 @@
-import ThemePicker from "@/components/ThemePicker";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import ThemePicker from "@/components/ThemePicker"
 
 export default function Home() {
   return (
     <div className="">
-      <ModeToggle />
       <ThemePicker />
     </div>
-  );
+  )
 }

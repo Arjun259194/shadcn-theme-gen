@@ -1,17 +1,30 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { Theme } from "@/hooks/useThemePicker"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
-   return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 
-type ColorValue = `${number}%`;
+export function themeToCss(obj: Theme) {
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [`--${key}`, value]),
+  )
+}
 
-export type RGB = `${ColorValue}, ${ColorValue}, ${ColorValue}`;
-
-export function hexToRgb(hex: string): RGB | null {
-   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-   return result
-      ? `${parseInt(result[1], 16)}%, ${parseInt(result[2], 16)}%, ${parseInt(result[3], 16)}%`
-      : null;
+export function printf(
+  str: string,
+  ...args: (object | string | number | boolean | any[])[]
+) {
+  return str
+    .split("{}")
+    .map((s, index, arr) => {
+      if (index === arr.length - 1) return ""
+      const data = args[index]
+      if (!data) return "{}"
+      if (typeof data === "object") return `${s}${JSON.stringify(data, null)}`
+      return `${s}${data}`
+    })
+    .filter(Boolean)
+    .join("")
 }
