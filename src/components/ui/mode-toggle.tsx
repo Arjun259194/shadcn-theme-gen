@@ -25,7 +25,7 @@ export function ModeToggle() {
    return (
       <DropdownMenu>
          <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon">
+            <Button variant={"ghost"} size="icon">
                {resolvedTheme === "light" ? (
                   <Sun className="h-[1.2rem] w-[1.2rem]" />
                ) : (
