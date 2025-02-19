@@ -10,7 +10,7 @@ export default function ColorInputs({
   update: (key: string, value: string) => void
 }) {
   return (
-    <div className="grid grid-cols-2 p-2 gap-4 w-1/2">
+    <div className="col-span-2 grid grid-cols-2 py-2">
       {Object.entries(theme).map(([key, value], index) => {
         return (
           <ColorInput

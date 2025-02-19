@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 
 export default function page() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 overflow-hidden relative">
+    <div className="min-h-screen flex items-center justify-center bg-background overflow-hidden relative">
       {/* Blurred Gradient Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-200 to-purple-200 rounded-full blur-3xl opacity-50 dark:from-blue-800 dark:to-purple-800 dark:opacity-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
@@ -11,10 +11,10 @@ export default function page() {
 
       {/* Content */}
       <div className="text-center max-w-2xl px-4 relative z-10">
-        <h1 className="text-6xl font-bold text-gray-900 dark:text-gray-100 capitalize">
+        <h1 className="text-6xl font-bold text-foreground  capitalize">
           Shadcn Theme Generator
         </h1>
-        <p className="mt-6 text-lg text-gray-600 dark:text-gray-300">
+        <p className="mt-6 text-lg text-secondary-foreground ">
           Craft stunning, customizable themes for your shadcn UI projects with
           ease. Whether you're building a sleek dashboard or a vibrant
           portfolio, our generator empowers you to create themes that shine in

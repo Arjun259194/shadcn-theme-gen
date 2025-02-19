@@ -1,27 +1,34 @@
 "use client"
 
-import useThemePicker from "@/hooks/useThemePicker"
+import useThemePicker, { Theme } from "@/hooks/useThemePicker"
 import ColorInputs from "./colorInputs"
-import { printf, themeToCss } from "@/lib/utils"
 
 export default function ThemePicker() {
   const { mode, dark, light, update } = useThemePicker()
   return (
-    <div className="flex">
+    <div className="grid grid-cols-3">
       {mode === "light" ? (
         <ColorInputs update={update} theme={light} />
       ) : (
         <ColorInputs update={update} theme={dark} />
       )}
-      <div className="w-1/2 p-2">
-        <pre className="bg-background text-foreground rounded-lg border-border border-2 p-2">
-          {printf(
-            ":root {}\n.dark {}",
-            JSON.stringify(themeToCss(light), null, "\t"),
-            JSON.stringify(themeToCss(dark), null, "\t"),
-          )}
-        </pre>
+      <div className=" p-2">
+        <CSSPreview light={light} dark={dark} />
       </div>
     </div>
+  )
+}
+
+function CSSPreview({ light, dark }: { light: Theme; dark: Theme }) {
+  function CSSVarCode(theme: Theme) {
+    return Object.entries(theme)
+      .map(([key, value]) => `\t--${key}: ${value};`)
+      .join("\n")
+  }
+  return (
+    <pre className="bg-background text-foreground rounded-lg border-border border-2 p-2">
+      {`:root {\n${CSSVarCode(light)}\n}\n`}
+      {`.dark {\n${CSSVarCode(dark)}\n}\n`}
+    </pre>
   )
 }

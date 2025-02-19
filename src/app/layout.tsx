@@ -2,11 +2,9 @@ import "./globals.css"
 import Header from "@/components/header"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import { getServerSession } from "next-auth"
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
-import { authOptions } from "./api/auth/[...nextauth]/route"
-import SessionProvider from "@/components/sessionProvider"
+import { SessionProvider } from "next-auth/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,13 +26,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const session = await getServerSession()
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider session={session}>
+        <SessionProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

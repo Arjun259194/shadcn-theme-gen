@@ -8,8 +8,10 @@ import {
 } from "./ui/navigation-menu"
 import { ModeToggle } from "./ui/mode-toggle"
 import { AuthButton } from "./AuthButton"
+import { auth } from "@/auth"
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth()
   return (
     <header className="mx-5 flex border-b border-border justify-between items-center p-3">
       <div className="flex items-center space-x-4">
@@ -30,6 +32,15 @@ export default function Header() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+            {session ? (
+              <NavigationMenuItem>
+                <Link href="/profile" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Profile
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ) : null}
           </NavigationMenuList>
         </NavigationMenu>
       </div>

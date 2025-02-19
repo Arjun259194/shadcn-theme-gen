@@ -17,7 +17,7 @@ const ColorInput = ({
 }: CoolColorPickerProps) => (
   <div
     className={cn(
-      "grid grid-cols-4 gap-2 items-center p-2 max-h-20 rounded-md border-border border shadow-border shadow-md",
+      "grid grid-cols-2 gap-2 items-center p-2 max-h-20 rounded-md border-border border shadow-border shadow-md",
       className,
     )}
   >
@@ -32,8 +32,8 @@ const ColorInput = ({
         className="aspect-square absolute  top-0 left-0 opacity-0 rounded-sm h-full w-full z-0"
       />
     </div>
-    <div className="col-span-3">
-      <p className="text-2xl capitalize">{title}</p>
+    <div className="">
+      <p className="text-lg capitalize">{title}</p>
       <p className="text-secondary-foreground">{color}</p>
     </div>
   </div>
