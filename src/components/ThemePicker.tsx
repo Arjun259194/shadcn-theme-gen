@@ -2,33 +2,55 @@
 
 import useThemePicker, { Theme } from "@/hooks/useThemePicker"
 import ColorInputs from "./colorInputs"
+import { CSSPreview } from "./css-preview"
+import { Button } from "./ui/button"
+import { Check, Eraser } from "lucide-react"
 
-export default function ThemePicker() {
-   const { mode, dark, light, update } = useThemePicker()
-   return (
-      <div className="grid grid-cols-3">
-         {mode === "light" ? (
-            <ColorInputs update={update} theme={light} />
-         ) : (
-            <ColorInputs update={update} theme={dark} />
-         )}
-         <div className=" p-2">
-            <CSSPreview light={light} dark={dark} />
-         </div>
-      </div>
-   )
+interface Props {
+   createAction: (props: { dark: Theme; light: Theme }) => Promise<void>
 }
 
-function CSSPreview({ light, dark }: { light: Theme; dark: Theme }) {
-   function CSSVarCode(theme: Theme) {
-      return Object.entries(theme)
-         .map(([key, value]) => `\t--${key}: ${value};`)
-         .join("\n")
-   }
+export default function ThemePicker({ createAction }: Props) {
+   const { mode, dark, light, update, reset } = useThemePicker()
+
    return (
-      <pre className="bg-background text-foreground rounded-lg border-border border-2 p-2">
-         {`:root {\n${CSSVarCode(light)}\n}\n`}
-         {`.dark {\n${CSSVarCode(dark)}\n}\n`}
-      </pre>
+      <>
+         <section className="flex justify-between items-center my-3">
+            <div>
+               <h2 className="text-2xl font-semibold">
+                  Theme name will go here
+               </h2>
+               <p className="max-w-[90ch] text-muted-foreground">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Suscipit beatae adipisci, culpa nulla Quidem, amet!
+               </p>
+            </div>
+            <div className="flex space-x-4">
+               <Button variant="outline">Preview</Button>
+               {/*TODO: Create a preview popup*/}
+               <Button size={"icon"} onClick={reset} variant={"secondary"}>
+                  <Eraser />
+               </Button>
+               <Button
+                  onClick={async () => {
+                     await createAction({ dark, light })
+                  }}
+                  size={"icon"}
+               >
+                  <Check />
+               </Button>
+            </div>
+         </section>
+         <div className="grid grid-cols-2">
+            {mode === "light" ? (
+               <ColorInputs update={update} theme={light} />
+            ) : (
+               <ColorInputs update={update} theme={dark} />
+            )}
+            <div className="p-2">
+               <CSSPreview light={light} dark={dark} />
+            </div>
+         </div>
+      </>
    )
 }

@@ -10,8 +10,8 @@ export default async function page() {
       <div>
          <div className="w-1/2 mx-auto">
             <Image
-               width={100}
-               height={100}
+               width={500}
+               height={500}
                src={session.user?.image ?? ""}
                alt="Profile Picture"
             />
