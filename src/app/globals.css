@@ -63,16 +63,6 @@ body {
    }
 }
 
-.preview {
-   --background: 47, 92%, 51%;
-   --foreground: 0, 100%, 25%;
-}
-
-.dark .preview {
-   --background: 120, 100%, 50%;
-   --foreground: 47, 92%, 51%;
-}
-
 @layer base {
    * {
       @apply border-border;

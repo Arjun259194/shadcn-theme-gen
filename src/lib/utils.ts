@@ -2,6 +2,9 @@ import { Theme } from "@/hooks/useThemePicker"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
+export const camelToKebab = (str: string): string =>
+   str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
+
 export function cn(...inputs: ClassValue[]) {
    return twMerge(clsx(inputs))
 }

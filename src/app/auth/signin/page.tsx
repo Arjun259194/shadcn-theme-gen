@@ -1,4 +1,5 @@
 import { auth } from "@/auth"
+import PreviewWrapper from "@/components/PreviewWrapper"
 import { redirect } from "next/navigation"
 
 export default async function page() {
@@ -9,18 +10,6 @@ export default async function page() {
    return (
       <div>
          <h2>This is the signin page</h2>
-
-         <div className="preview">
-            <div className="bg-foreground">
-               <p className="text-background">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Labore aspernatur nulla atque vitae voluptas aut eos laborum
-                  consequuntur asperiores eveniet? Quisquam maxime sed pariatur
-                  necessitatibus dolores, sint nulla qui libero?
-               </p>
-            </div>
-         </div>
-
       </div>
    )
 }
