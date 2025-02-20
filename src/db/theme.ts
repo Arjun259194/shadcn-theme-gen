@@ -1,10 +1,21 @@
 import { sqliteTable, text } from "drizzle-orm/sqlite-core"
-import { createSelectSchema } from 'drizzle-zod';
+import { createSelectSchema } from "drizzle-zod"
+import { users } from "./user"
+
+// Example
+// const res = await db
+//   .select()
+//   .from(themes)
+//   .leftJoin(users, eq(themes.userId, users.id))
+//   .all()
 
 export const themes = sqliteTable("themes", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
+  userId: text("id")
+    .notNull()
+    .references(() => users.id),
   background: text("background").notNull(),
   foreground: text("foreground").notNull(),
   card: text("card").notNull(),
@@ -30,6 +41,5 @@ export const themes = sqliteTable("themes", {
   chart4: text("chart_4").notNull(),
   chart5: text("chart_5").notNull(),
 })
-
 
 export const themeSelectSchema = createSelectSchema(themes)
