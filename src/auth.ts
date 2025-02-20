@@ -4,12 +4,12 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import db from "./db"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: DrizzleAdapter(db),
-  providers: [Github],
-  callbacks: {
-    async session({ session, user }) {
-      session.user.id = user.id
-      return session
-    },
-  },
+   adapter: DrizzleAdapter(db),
+   providers: [Github],
+   callbacks: {
+      async session({ session, user }) {
+         session.user.id = user.id
+         return session
+      },
+   },
 })
