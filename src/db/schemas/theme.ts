@@ -2,7 +2,7 @@ import { sqliteTable, text } from "drizzle-orm/sqlite-core"
 import { users } from "./user"
 import { colorschemes } from "./colorscheme"
 
-export const themes = sqliteTable("themes", { 
+export const themes = sqliteTable("themes", {
    id: text("id")
       .primaryKey()
       .$defaultFn(() => crypto.randomUUID()),

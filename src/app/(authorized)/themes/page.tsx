@@ -8,10 +8,10 @@ export default async function page() {
          {themes.length <= 0 ? (
             <h3>No Theme created</h3>
          ) : (
-            themes.map(({ user, id }, idx) => {
+            themes.map(({ user, theme }, idx) => {
                return (
                   <div key={idx}>
-                     <Link href={`/themes/${id}`}>Here</Link>
+                     <Link href={`/themes/${theme.id}`}>Here</Link>
                      <p>created by {user?.name}</p>
                   </div>
                )

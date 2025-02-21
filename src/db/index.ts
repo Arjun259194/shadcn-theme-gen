@@ -29,10 +29,10 @@ export async function getThemeByID(id: string) {
       .limit(1)
 }
 
-export async function getThemes() {
+export async function getThemesRecursion() {
    return await db
       .select({
-         id: themes.id,
+         theme: themes,
          user: users,
       })
       .from(themes)

@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils"
 import { ChangeEventHandler } from "react"
 
-interface CoolColorPickerProps {
+interface Props {
    title: string
    update: ChangeEventHandler<HTMLInputElement>
    color: string
@@ -14,7 +14,7 @@ const ColorInput = ({
    color,
    update,
    className,
-}: CoolColorPickerProps) => (
+}: Props) => (
    <div
       className={cn(
          "grid grid-cols-2 gap-2 items-center max-h-20 rounded-full overflow-hidden border-border border ",
