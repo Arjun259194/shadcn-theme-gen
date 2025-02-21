@@ -1,5 +1,4 @@
 import { auth } from "@/auth"
-import PreviewWrapper from "@/components/PreviewWrapper"
 import { redirect } from "next/navigation"
 
 export default async function page() {
